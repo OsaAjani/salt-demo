@@ -81,7 +81,7 @@ Sur le salt-master
  2. Acceptez la clef du minion ```salt-key -A```
  3. Configurer la nouvelle machine : ```salt 'server-app-*' state.sls server-app -l debug```
 Sur le HAproxy
-------
+-------
  4. Modifier le fichier ```/etc/haproxy/haproxy.cfg``` et ajouter une ligne au format suivant à la liste des IP server-app :
 ```server server-app-<NUMERO> 192.168.56.X:3306 check port 9200``` (ou NUMERO = le numéro de cette machine et X = la bonne ip) 
  5. Re-charger le configuration de HAproxy : ```/etc/init.d/haproxy reload```
