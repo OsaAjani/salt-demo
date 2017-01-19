@@ -1,4 +1,4 @@
-Ips
+IP(s)
 ===
 
 Salt-Master
