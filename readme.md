@@ -28,6 +28,8 @@ Modifier le fichier /etc/salt/master pour configurer le pillars sur ```/srv/pill
 
 Une fois fait, coller le contenu du dépot dans le dossier ```/srv/``` puis redémarrer salt-master.
 
+
+
 Ajouter une machine DB
 ===
 
@@ -40,6 +42,7 @@ Configurer une ip static sur eth1 dans la plage adaptée.
  3. Puis ajouter l'IP du master : ```sed -ie 's/#master: salt/master: 192.168.56.101/g' /etc/salt/minion```
  4. Redémarrer le salt-minion : ```/etc/init.d/salt-minion restart```
 
+
 Sur le salt-master
 ------
  1. Modifier le fichier ```/srv/pillar/galera/init.sls``` et ajouter un nodes au format suivant :
@@ -48,15 +51,21 @@ Sur le salt-master
  3. Configurer la machine : ```salt 'minion-galera-<NUMERO>' state.sls galera```
  4. Redémarrer la machine : ```salt 'minion-galera-<NUMERO>' cmd.run 'reboot'```
  
+ 
 Sur le HAproxy
 ------
  4. Modifier le fichier ```/etc/haproxy/haproxy.cfg``` et ajouter une ligne au format suivant à la liste des IPs MySQL :
 ```server minion-galera-<NUMERO> 192.168.56.X:3306 check port 9200``` (ou NUMERO = le numéro de cette machine et X = la bonne ip)
  5. Re-charger le configuration de HAproxy : ```/etc/init.d/haproxy reload```
 
+
+
+
 Ajouter une machine Server-App
 ===
 Sur la machine Server-App
+
+
 ------
 Configurer une ip static sur eth1 dans la plage adaptée.
 
@@ -65,16 +74,21 @@ Configurer une ip static sur eth1 dans la plage adaptée.
  3. Puis ajouter l'IP du master : ```sed -ie 's/#master: salt/master: 192.168.56.101/g' /etc/salt/minion```
  4. Redémarrer le salt-minion : ```/etc/init.d/salt-minion restart```
 
+
 Sur le salt-master
 ------
  1. Modifier le fichier ```/srv/pillar/galera/init.sls``` et ajouter un nodes au format suivant :
 ```    server-app-<NUMERO>: 192.168.56.X``` (ou NUMERO = le numéro de cette machine et X = la bonne ip)
  2. Configurer la nouvelle machine : ```salt 'server-app-*' state.sls server-app -l debug```
+ 
+ 
 Sur le HAproxy
 ------
  1. Modifier le fichier ```/etc/haproxy/haproxy.cfg``` et ajouter une ligne au format suivant à la liste des IP server-app :
 ```server server-app-<NUMERO> 192.168.56.X:3306 check port 9200``` (ou NUMERO = le numéro de cette machine et X = la bonne ip) 
  2. Re-charger le configuration de HAproxy : ```/etc/init.d/haproxy reload```
+
+
 
 Quelques cas particuliers
 ===
