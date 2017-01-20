@@ -16,7 +16,7 @@ Les DB sont réparties sur la plage ```192.168.56.102-192.168.56.119```
 Server App
 ----------
 
-Les server-app sont réparties sur la place ```192.168.56.121-192.168.56.159```
+Les server-app sont réparties sur la place ```192.168.56.121-192.168.56.149```
 
 
 Installer salt-master
