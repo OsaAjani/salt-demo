@@ -41,12 +41,11 @@ Ajouter une machine DB
 
 Sur la machine DB
 ------
-Configurer une ip static sur eth1 dans la plage adaptée.
-
- 1. Configurer le hostname selon le format suivant : ```echo 'minion-galera-<NUMERO>' > /etc/hostname && /etc/init.d/hostname.sh restart```
- 2. Installer salt-minion : ```apt install salt-minion```
- 3. Puis ajouter l'IP du master : ```sed -ie 's/#master: salt/master: 192.168.56.101/g' /etc/salt/minion```
- 4. Redémarrer le salt-minion : ```/etc/init.d/salt-minion restart```
+ 1. Configurer une ip static sur eth1 dans la plage adaptée.
+ 2. Configurer le hostname selon le format suivant : ```echo 'minion-galera-<NUMERO>' > /etc/hostname && /etc/init.d/hostname.sh restart```
+ 3. Installer salt-minion : ```apt install salt-minion```
+ 4. Puis ajouter l'IP du master : ```sed -ie 's/#master: salt/master: 192.168.56.101/g' /etc/salt/minion```
+ 5. Redémarrer le salt-minion : ```/etc/init.d/salt-minion restart```
 
 Sur le salt-master
 ------
@@ -67,12 +66,11 @@ Ajouter une machine Server-App
 ===
 Sur la machine Server-App
 ------
-Configurer une ip static sur eth1 dans la plage adaptée.
-
- 1. Configurer le hostname selon le format suivant : ```echo 'server-app-<NUMERO>' > /etc/hostname && /etc/init.d/hostname.sh restart```
- 2. Installer salt-minion : ```apt install salt-minion```
- 3. Puis ajouter l'IP du master : ```sed -ie 's/#master: salt/master: 192.168.56.101/g' /etc/salt/minion```
- 4. Redémarrer le salt-minion : ```/etc/init.d/salt-minion restart```
+ 1. Configurer une ip static sur eth1 dans la plage adaptée.
+ 2. Configurer le hostname selon le format suivant : ```echo 'server-app-<NUMERO>' > /etc/hostname && /etc/init.d/hostname.sh restart```
+ 3. Installer salt-minion : ```apt install salt-minion```
+ 4. Puis ajouter l'IP du master : ```sed -ie 's/#master: salt/master: 192.168.56.101/g' /etc/salt/minion```
+ 5. Redémarrer le salt-minion : ```/etc/init.d/salt-minion restart```
 
 Sur le salt-master
 ------
@@ -83,9 +81,9 @@ Sur le salt-master
 
 Sur le HAproxy
 ------
- 4. Modifier le fichier ```/etc/haproxy/haproxy.cfg``` et ajouter une ligne au format suivant à la liste des IP server-app :
+ 1. Modifier le fichier ```/etc/haproxy/haproxy.cfg``` et ajouter une ligne au format suivant à la liste des IP server-app :
 ```server server-app-<NUMERO> 192.168.56.X:3306 check port 9200``` (ou NUMERO = le numéro de cette machine et X = la bonne ip) 
- 5. Re-charger le configuration de HAproxy : ```/etc/init.d/haproxy reload```
+ 2. Re-charger le configuration de HAproxy : ```/etc/init.d/haproxy reload```
 
 Quelques cas particuliers
 ===
